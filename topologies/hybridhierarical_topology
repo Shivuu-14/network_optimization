@@ -1,0 +1,15 @@
+from mininet.topo import Topo
+
+class HybridHierarchicalTopology(Topo):
+    def build(self):
+        core = self.addSwitch('s1')
+        agg1 = self.addSwitch('s2')
+        agg2 = self.addSwitch('s3')
+        self.addLink(core, agg1)
+        self.addLink(core, agg2)
+        for i in range(3):
+            host = self.addHost(f'h{i+1}')
+            self.addLink(host, agg1)
+        for i in range(3, 6):
+            host = self.addHost(f'h{i+1}')
+            self.addLink(host, agg2)

@@ -1,0 +1,11 @@
+from mininet.topo import Topo
+
+class StarTopology(Topo):
+    def build(self):
+        # Central switch
+        center_switch = self.addSwitch('s1')
+        
+        # Add hosts and connect them to the center switch
+        for i in range(1, 6):
+            host = self.addHost(f'h{i}')
+            self.addLink(host, center_switch)
